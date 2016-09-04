@@ -1,0 +1,36 @@
+Layout
+
+Layout of 6 car manufacturers with logo and a button with the name
+
+Button ID: manufacturer1,2,3,etc.
+Button Class: manufacturer
+
+Add button so someone can add another car manufacturer
+
+id: addManufacturer
+
+Gif layout featuring a title with the car manufacturer and for every picture have the rating and the picture
+
+id: picture1, picture2, picture3
+
+Variables
+
+listOfManufacturers: an array of all the car manufacturers
+
+Manufacturers: an array of 6 random car manufacturers to begin with and will be added to by the visitor
+
+addManufacturer: button id for user to add a manufacturer
+
+queryUrl = the base Gif api address
+
+function
+
+setupButtons
+
+set up a loop of six doing a random number to pick out 6 car manufacturer. check each one make sure not duplicate. push into manufacturers array
+
+click addManufacturer button and if clicked check the listof manufacturers to make sure valid if not valid message try again if valid build the logo and the button 
+
+click buttonid to run the query and display the 10 pictures with the title, rating, and picture.
+
+click picture and swap between the still and the animated pic.
