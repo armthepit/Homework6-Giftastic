@@ -81,6 +81,11 @@ $(document).ready(function () {
 		}
 	}	
 
+	function displayGifs() {
+		var carManufacturer = listOfManufacturers[$(this).attr('data-index')].name;
+		console.log(carManufacturer);
+	}
+
 	// Click function to add Car Manufacturer
 	$('#addCarManufacturer').on('click', function(){
 
@@ -101,7 +106,8 @@ $(document).ready(function () {
 		return false;
 	})
 
-	
+	// Click function to check which logo clicked and call the displayGifs function
+	$(document).on('click', '.logo', displayGifs);
 	
 
 
