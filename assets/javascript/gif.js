@@ -57,9 +57,29 @@ $(document).ready(function () {
 				carManufacturers[i] = Math.round(Math.random()*42);
 			} while (carManufacturers.indexOf(carManufacturers[i]) != i);
 		}	
+	}
+
+	function displayCarManufacturerButtons(){ 
+
+		// Deletes the car manufacturer buttons prior to adding new car manufactures from user.
+		$('#carManufacturersButtons').empty();
+
+		// Loops through the array of movies
+		for (var i = 0; i < carManufacturers.length; i++){
+
+			// Create car manufacturer buttons for each car manufacturer in the array carManufacturers.
+
+		    var j = $('<input>')
+		    j.attr('type','image');
+		    j.attr('src', listOfManufacturers[carManufacturers[i]].photo);
+		    j.attr('data-index', carManufacturers[i]); 
+		    j.addClass('submit logo');
+		    $('#carManufacturersButtons').append(j); 
+		}
 	}	
 
 	initialCarManufacturers();
+	displayCarManufacturerButtons();
 
 
 
