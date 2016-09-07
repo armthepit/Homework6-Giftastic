@@ -44,3 +44,19 @@ body {
 input {
     outline: 0 !important;
 }
+
+/* add a car manufacturer */
+
+#carManufacturerForm {
+	padding: 5px;
+}
+
+.input#inputCarManufacturer {
+	font-size: 14px;
+	padding: 5px;
+}
+
+#addCarManufacturer {
+	font-size: 14px;
+	padding: 5px;
+}
