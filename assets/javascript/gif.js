@@ -82,8 +82,7 @@ $(document).ready(function () {
 	}	
 
 	// Click function to add Car Manufacturer
-	$('#addCarManufacturer').on('click', function(){
-
+	$(document).on('click','#addCarManufacturer', function() {
 		$('#errorMessage').text('');
 		// This line of code will grab the input from the textbox
 		var carManufacturer = ($('#inputCarManufacturer').val().trim()).toUpperCase();
@@ -102,7 +101,8 @@ $(document).ready(function () {
 	})
 
 	// Click function to check which logo clicked and call the displayGifs function
-	$('.logo').on('click', function() {
+	$(document).on('click','.logo', function() {
+	//$('.logo').on('click', function() {
 		var carManufacturer = listOfManufacturers[$(this).attr('data-index')].name;
 		$('#carManufacturersGifs').empty();
         var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + carManufacturer + "&api_key=dc6zaTOxFJmzC&limit=10";
