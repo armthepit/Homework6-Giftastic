@@ -30,7 +30,7 @@ $(document).ready(function () {
 		{"index":26,"name":"Mazda","photo":"assets/images/mazda.jpg"},
 		{"index":27,"name":"Mercedes Benz","photo":"assets/images/mercedes_benz.jpg"},
 		{"index":28,"name":"MG","photo":"assets/images/mg.jpg"},
-		{"index":29,"name":"Mini Cooper Romeo","photo":"assets/images/mini_cooper.jpg"},
+		{"index":29,"name":"Mini Cooper","photo":"assets/images/mini_cooper.jpg"},
 		{"index":30,"name":"Mitsubishi","photo":"assets/images/mitsubishi.jpg"},
 		{"index":31,"name":"Nissan","photo":"assets/images/nissan.jpg"},
 		{"index":32,"name":"Peugeot","photo":"assets/images/peugeot.jpg"},
@@ -51,12 +51,15 @@ $(document).ready(function () {
 	console.log(carManufacturers);
 	var newHtml = '';
 
+	initialCarManufacturers();
+
 	function initialCarManufacturers(){
 		for (var i = 0; i < 6; i++) {
 			do {
 				carManufacturers[i] = Math.round(Math.random()*42);
 			} while (carManufacturers.indexOf(carManufacturers[i]) != i);
-		}	
+		}
+		displayCarManufacturerButtons();	
 	}
 
 	function displayCarManufacturerButtons(){ 
@@ -64,7 +67,7 @@ $(document).ready(function () {
 		// Deletes the car manufacturer buttons prior to adding new car manufactures from user.
 		$('#carManufacturersButtons').empty();
 
-		// Loops through the array of movies
+		// Loops through the array of Car Manufacturer from the initial list and car manufacturers added.
 		for (var i = 0; i < carManufacturers.length; i++){
 
 			// Create car manufacturer buttons for each car manufacturer in the array carManufacturers.
@@ -78,8 +81,28 @@ $(document).ready(function () {
 		}
 	}	
 
-	initialCarManufacturers();
-	displayCarManufacturerButtons();
+	// Click function to add Car Manufacturer
+	$('#addCarManufacturer').on('click', function(){
+
+		$('#errorMessage').text('');
+		// This line of code will grab the input from the textbox
+		var carManufacturer = ($('#inputCarManufacturer').val().trim()).toUpperCase();
+		// Loop till input matches a car manufacturer in the List Of Car Manufacturers and then pushes into the array. Calls the displayCarManufacturerButtons.
+		for(var i=0; i < listOfManufacturers.length; i++){
+			if((listOfManufacturers[i].name).toUpperCase() == carManufacturer && carManufacturers.indexOf(i) == -1)
+			{
+				carManufacturers.push(i);
+				displayCarManufacturerButtons();
+				break;
+			};
+		};
+		// Clear input field
+		$('#inputCarManufacturer').val('');
+		return false;
+	})
+
+	
+	
 
 
 
