@@ -81,11 +81,6 @@ $(document).ready(function () {
 		}
 	}	
 
-	function displayGifs() {
-		var carManufacturer = listOfManufacturers[$(this).attr('data-index')].name;
-		console.log(carManufacturer);
-	}
-
 	// Click function to add Car Manufacturer
 	$('#addCarManufacturer').on('click', function(){
 
@@ -107,7 +102,35 @@ $(document).ready(function () {
 	})
 
 	// Click function to check which logo clicked and call the displayGifs function
-	$(document).on('click', '.logo', displayGifs);
+	$('.logo').on('click', function() {
+		var carManufacturer = listOfManufacturers[$(this).attr('data-index')].name;
+		$('#carManufacturersGifs').empty();
+        var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + carManufacturer + "&api_key=dc6zaTOxFJmzC&limit=10";
+
+        $.ajax({
+                url: queryURL,
+                method: 'GET'
+            })
+            .done(function(response) {
+                console.log(queryURL);
+                console.log(response)
+                var searchResults = response.data;
+                for (var i = 0; i < searchResults.length; i++) {
+                    var carManufacturersGif = $('<div>');
+
+                    var rating = $('<p>').text("Rating: " + searchResults[i].rating);
+
+                    var carManufacturerImage = $('<img>');
+                    carManufacturerImage.attr('src', searchResults[i].images.fixed_height.url);
+
+                    carManufacturersGif.append(rating);
+                   	carManufacturersGif.append(carManufacturerImage);
+
+                    $('#carManufacturersGifs').prepend(carManufacturersGif);
+                }
+
+            });
+    });	
 	
 
 
