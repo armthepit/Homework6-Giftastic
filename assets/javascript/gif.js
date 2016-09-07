@@ -46,11 +46,20 @@ $(document).ready(function () {
 		{"index":42,"name":"Volvo","photo":"assets/images/volvo.jpg"},
 	];
 
-	initialCarManufacturers();
 
-	var carManufacturers = [];
+	var carManufacturers = [-1,-1,-1,-1,-1,-1];
+	console.log(carManufacturers);
 	var newHtml = '';
 
+	function initialCarManufacturers(){
+		for (var i = 0; i < 6; i++) {
+			do {
+				carManufacturers[i] = Math.round(Math.random()*42);
+			} while (carManufacturers.indexOf(carManufacturers[i]) != i);
+		}	
+	}	
+
+	initialCarManufacturers();
 
 
 
