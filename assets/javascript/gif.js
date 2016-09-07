@@ -102,35 +102,42 @@ $(document).ready(function () {
 
 	// Click function to check which logo clicked and call the displayGifs function
 	$(document).on('click','.logo', function() {
-	//$('.logo').on('click', function() {
 		var carManufacturer = listOfManufacturers[$(this).attr('data-index')].name;
 		$('#carManufacturersGifs').empty();
         var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + carManufacturer + "&api_key=dc6zaTOxFJmzC&limit=10";
-
         $.ajax({
                 url: queryURL,
                 method: 'GET'
             })
             .done(function(response) {
-                console.log(queryURL);
-                console.log(response)
                 var searchResults = response.data;
                 for (var i = 0; i < searchResults.length; i++) {
                     var carManufacturersGif = $('<div>');
-
-                    var rating = $('<p>').text("Rating: " + searchResults[i].rating);
-
+                    var rating = $('<p>').text("Rating: " + (searchResults[i].rating).toUpperCase());
                     var carManufacturerImage = $('<img>');
-                    carManufacturerImage.attr('src', searchResults[i].images.fixed_height.url);
-
+                    carManufacturerImage.addClass('searchImage');
+                    carManufacturerImage.attr('src', searchResults[i].images.fixed_height_still.url);
+                    carManufacturerImage.attr('data-staticimage', searchResults[i].images.fixed_height_still.url);
+                    carManufacturerImage.attr('data-animatedimage', searchResults[i].images.fixed_height.url);
+                    carManufacturerImage.attr('data-swap','Image Static');
                     carManufacturersGif.append(rating);
                    	carManufacturersGif.append(carManufacturerImage);
-
                     $('#carManufacturersGifs').prepend(carManufacturersGif);
                 }
-
-            });
+        });
     });	
+
+    // Click function to swap images from static to animated and animated to static
+    $(document).on('click','.searchImage', function() {
+    	var swapStatus = $(this).attr('data-swap');
+        if (swapStatus == 'Image Static'){
+            $(this).attr('src', $(this).data('animatedimage'));
+            $(this).attr('data-swap','Image Animated');
+        } else{
+            $(this).attr('src', $(this).data('staticimage'));
+            $(this).attr('data-swap','Image Static');
+        }
+    });
 	
 
 
@@ -164,5 +171,4 @@ $(document).ready(function () {
 
 
 
-	 /* body... */ 
 })
