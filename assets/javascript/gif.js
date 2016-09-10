@@ -120,8 +120,8 @@ $(document).ready(function () {
                     carManufacturerImage.attr('data-staticimage', searchResults[i].images.fixed_height_still.url);
                     carManufacturerImage.attr('data-animatedimage', searchResults[i].images.fixed_height.url);
                     carManufacturerImage.attr('data-swap','Image Static');
-                    carManufacturersGif.append(rating);
-                   	carManufacturersGif.append(carManufacturerImage);
+                    carManufacturersGif.append(carManufacturerImage);
+                   	carManufacturersGif.append(rating);
                     $('#carManufacturersGifs').prepend(carManufacturersGif);
                 }
         });
